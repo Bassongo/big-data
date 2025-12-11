@@ -144,27 +144,7 @@ big-data/
 ├── README.md                          # Ce fichier
 ├── requirements.txt                   # Dépendances Python
 │
-├── notebooks/
-│   └── projet_big_data.ipynb         # Notebook principal d'analyse
-│
-├── data/
-│   ├── raw/                          # Données brutes (non versionnées)
-│   │   ├── opsd_time_series.csv
-│   │   └── meteo_*.csv
-│   └── processed/                    # Données traitées
-│       └── energy_meteo_merged.parquet
-│
-├── outputs/                          # Résultats et visualisations
-│   ├── figures/
-│   │   ├── visual_1_correlations.png
-│   │   ├── visual_2_significance.png
-│   │   ├── visual_3_models.png
-│   │   └── visual_4_impact.png
-│   └── reports/
-│       └── resultats_essentiels.md
-│
-└── presentation/                     # Support de présentation
-    └── slides_projet_bdcc.pdf
+├── projet_big_data.ipynb         # Notebook principal d'analyse
 ```
 
 ---
