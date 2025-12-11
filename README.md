@@ -4,7 +4,7 @@
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-Academic-green.svg)]()
 
-**Projet BDCC 2025** - Analyse des données météorologiques avec Apache Spark pour comprendre leur impact sur l'économie énergétique européenne.
+**Projet BDCC 2025 - Groupe 2** - Analyse des données météorologiques avec Apache Spark pour comprendre leur impact sur l'économie énergétique européenne.
 
 ---
 
@@ -140,7 +140,7 @@ Apprendre à utiliser Apache Spark pour le traitement de grandes quantités de d
 ## Structure du projet
 
 ```
-projet-bdcc-meteo-energie/
+big-data/
 │
 ├── README.md                          # Ce fichier
 ├── requirements.txt                   # Dépendances Python
@@ -163,11 +163,6 @@ projet-bdcc-meteo-energie/
 │   │   └── visual_4_impact.png
 │   └── reports/
 │       └── resultats_essentiels.md
-│
-├── docs/                             # Documentation technique
-│   ├── architecture.md
-│   ├── methodologie.md
-│   └── interpretation_resultats.md
 │
 └── presentation/                     # Support de présentation
     └── slides_projet_bdcc.pdf
@@ -197,15 +192,15 @@ from google.colab import drive
 drive.mount('/content/drive')
 
 # Cloner le repository
-!git clone https://github.com/votre-username/projet-bdcc-meteo-energie.git
+!git clone https://github.com/Bassongo/big-data.git
 ```
 
 #### Option 2 : Installation locale
 
 ```bash
 # Cloner le repository
-git clone https://github.com/votre-username/projet-bdcc-meteo-energie.git
-cd projet-bdcc-meteo-energie
+git clone https://github.com/Bassongo/big-data.git
+cd big-data
 
 # Créer un environnement virtuel
 python -m venv venv
@@ -267,7 +262,7 @@ Le notebook est structuré en sections principales :
 jupyter notebook notebooks/projet_big_data.ipynb
 
 # Ou dans Google Colab
-# Fichier > Ouvrir le notebook > GitHub > Coller l'URL du repo
+# Fichier > Ouvrir le notebook > GitHub > https://github.com/Bassongo/big-data
 ```
 
 ---
@@ -291,38 +286,43 @@ jupyter notebook notebooks/projet_big_data.ipynb
 
 ### 2. Impact des températures extrêmes
 
-#### France
+#### Analyse multi-pays (moyenne européenne)
+
+Cette analyse porte sur 31 pays européens du dataset.
 
 **Consommation moyenne par période**
 ```
-Normale (0-25°C) :  10,768 MW
-Canicule (>25°C) :  12,694 MW  (+17.9%)
-Froid (<0°C) :       9,573 MW  (-11.1%)
+Normale (0-25°C) :  10,955 MW
+Canicule (>25°C) :  12,794 MW  (+16.8%)
+Froid (<0°C) :       9,610 MW  (-12.3%)
 ```
 
 **Tests statistiques**
 
 Test ANOVA global
-- F-statistique : 45.31
-- p-value : 2.16e-20 (< 0.001)
+- F-statistique : 48.00
+- p-value : 1.48e-21 (< 0.001)
 - **Conclusion** : Les différences sont TRÈS significatives
 
 **Comparaisons par paires** (tests t de Student)
 
 | Comparaison | Différence | p-value | Significativité |
 |-------------|-----------|---------|-----------------|
-| Normale vs Canicule | +17.9% (+1,926 MW) | 2.42e-09 | *** |
-| Normale vs Froid | -11.1% (-1,195 MW) | 6.52e-12 | *** |
-| Canicule vs Froid | -24.6% (-3,120 MW) | 4.76e-25 | *** |
+| Normale vs Canicule | +16.8% (+1,840 MW) | 2.66e-08 | *** |
+| Normale vs Froid | -12.3% (-1,344 MW) | 4.17e-14 | *** |
+| Canicule vs Froid | -24.9% (-3,184 MW) | 2.54e-25 | *** |
 
 *Note : *** signifie p < 0.001 (différence très significative)*
 
 **Interprétation** : 
-- Les canicules entraînent une hausse de 17.9% de la consommation (climatisation)
-- Le grand froid entraîne une baisse de 11.1% (valeur contre-intuitive, expliquée par une plus grande stabilité des températures en période de froid extrême)
-- La différence entre canicule et froid est de 24.6%, hautement significative
+- En moyenne sur les 31 pays européens analysés, les canicules entraînent une hausse de 16.8% de la consommation électrique (climatisation, refroidissement)
+- Le grand froid entraîne paradoxalement une baisse de 12.3% de la consommation moyenne
+- La différence entre canicule et froid est de 24.9%, hautement significative
+- Ces tendances moyennes masquent d'importantes variations géographiques, comme le montre l'analyse de l'Allemagne ci-dessous
 
-#### Allemagne
+#### Analyse spécifique : Allemagne
+
+L'Allemagne, plus grand consommateur d'électricité du dataset, présente un comportement différent.
 
 **Consommation moyenne par période**
 ```
@@ -332,38 +332,46 @@ Froid (<0°C) :     59,987 MW (+8.4%)
 ```
 
 **Interprétation** :
-- L'Allemagne réagit différemment : consommation maximale en hiver
-- Impact canicule limité (+0.7%) : climat moins chaud que la France
-- Impact froid important (+8.4%) : chauffage massif nécessaire
+- L'Allemagne réagit très différemment de la moyenne européenne
+- Impact canicule limité (+0.7%) : climat plus tempéré, moins de climatisation
+- Impact froid important (+8.4%) : chauffage électrique massif nécessaire
+- Consommation maximale en période de grand froid, contrairement à la tendance moyenne
+- Cela illustre l'importance d'analyses géographiques différenciées
 
 ### 3. Événements météorologiques extrêmes identifiés
 
-**Jours de canicule (>25°C)** : 2,115 jours sur la période
+**Jours de canicule (>25°C)** : 2,079 jours sur la période
 
 **TOP 3 des jours les plus chauds** :
-1. 02/07/2017 - Chypre : 35.3°C (700 MW de consommation)
-2. 03/07/2017 - Chypre : 34.5°C (818 MW)
+1. 02/07/2017 - Chypre : 35.3°C
+2. 03/07/2017 - Chypre : 34.5°C
 3. 03/08/2015 - Chypre : 34.3°C
 
-**Jours de grand froid (<0°C)** : 7,542 jours
+**Jours de grand froid (<0°C)** : 7,444 jours
 
 **TOP 3 des jours les plus froids** :
-1. 18/01/2016 - Finlande : -23.4°C (13,626 MW)
-2. 20/01/2016 - Finlande : -23.1°C (13,707 MW)
+1. 18/01/2016 - Finlande : -23.4°C
+2. 20/01/2016 - Finlande : -23.1°C
 3. 08/01/2016 - Estonie : -23.1°C
 
 ### 4. Statistiques du dataset
 
 **Volume de données**
-- Observations totales : 124,217 (après agrégation)
+- Observations totales : 590,352 (après fusion)
 - Période : Janvier 2015 - Juin 2020 (5.5 ans)
-- Pays analysés : 7 (DE, FR, BE, CH, AT, CZ, BG, CY)
+- Pays analysés : 31 pays européens
+- Liste des pays : AT, BE, BG, CH, CY, CZ, DE, DK, EE, ES, FI, FR, GB, HR, HU, IE, IT, LT, LU, LV, ME, NL, NO, PL, PT, RO, RS, SE, SI, SK, UA
 - Granularité : Données journalières
 
 **Métriques disponibles**
 - Consommation électrique : 62,248 observations
 - Production éolienne : 56,224 observations
 - Production solaire : 42,168 observations
+
+**Répartition des observations par période climatique**
+- Période normale (0-25°C) : 50,717 jours (84.3%)
+- Canicule (>25°C) : 2,079 jours (3.5%)
+- Grand froid (<0°C) : 7,444 jours (12.4%)
 
 ---
 
@@ -403,23 +411,18 @@ Froid (<0°C) :     59,987 MW (+8.4%)
 
 **Cours** : Big Data & Cloud Computing (BDCC 2025)  
 **Formatrice** : Mously DIAW  
-**Institution** : Tech et Cie
+**Institution** : Tech et Cie  
+**Groupe** : Groupe 2
 
 **Membres de l'équipe** :
-- [Nom Membre 1] - Rôle
-- [Nom Membre 2] - Rôle
-- [Nom Membre 3] - Rôle
-- [Nom Membre 4] - Rôle
+- **Mouhammadou DIA** - Analyste Statisticien
+- **Emmanuel DOSSEKOU** - Analyste Statisticien
+- **Marc MARE** - Analyste Statisticien
+- **Ndeye Salla TOURE** - Analyste Statisticien
 
 ---
 
 ## Documentation
-
-### Documentation technique
-
-- [Architecture détaillée](docs/architecture.md)
-- [Méthodologie d'analyse](docs/methodologie.md)
-- [Interprétation des résultats](docs/interpretation_resultats.md)
 
 ### Ressources externes
 
@@ -473,7 +476,7 @@ Froid (<0°C) :     59,987 MW (+8.4%)
 - Impact des canicules (>25°C) sur la consommation
 - Impact du grand froid (<0°C) sur la consommation
 - Comparaison avec période normale (0-25°C)
-- Analyse par pays (France, Allemagne)
+- Analyse par pays (focus Allemagne)
 
 **Méthodologie**
 - Segmentation des données par seuils de température
@@ -542,6 +545,7 @@ Froid (<0°C) :     59,987 MW (+8.4%)
    - Développer des modèles prédictifs (Machine Learning)
    - Analyser l'évolution temporelle des corrélations
    - Étudier d'autres scénarios (vents forts, précipitations extrêmes)
+   - Analyses spécifiques pour chaque pays
 
 3. **Infrastructure**
    - Déployer sur un cluster Spark multi-nœuds
@@ -579,8 +583,9 @@ Froid (<0°C) :     59,987 MW (+8.4%)
    - Perte d'information sur la variabilité intra-journalière
 
 3. **Couverture géographique**
-   - 7 pays seulement (Europe de l'Ouest principalement)
-   - Biais géographique dans les conclusions
+   - 31 pays européens analysés (couverture large de l'Europe)
+   - Analyses pays par pays limitées (seule l'Allemagne analysée en détail)
+   - Différences de qualité et de complétude des données selon les pays
 
 ### Limitations méthodologiques
 
@@ -591,7 +596,11 @@ Froid (<0°C) :     59,987 MW (+8.4%)
 2. **Scénarios**
    - Pas de prise en compte du stockage énergétique
    - Hypothèses simplificatrices sur les seuils de température
-   - Périodes d'analyse limitées
+   - Périodes d'analyse limitées (5.5 ans)
+
+3. **Hétérogénéité géographique**
+   - Analyses moyennes peuvent masquer des variations importantes
+   - Différences de mix énergétique entre pays non prises en compte
 
 ---
 
@@ -618,35 +627,37 @@ Ce projet est réalisé dans un cadre académique pour le cours Big Data & Cloud
 ## Contact
 
 **Projet** : Analyse Météo-Énergie avec Spark  
-**Cours** : BDCC 2025  
+**Cours** : BDCC 2025 - Groupe 2  
 **Formatrice** : Mously DIAW (mouslydiaw@gmail.com)
 
-**Repository** : [https://github.com/votre-username/projet-bdcc-meteo-energie](https://github.com/votre-username/projet-bdcc-meteo-energie)
+**Repository** : [https://github.com/Bassongo/big-data](https://github.com/Bassongo/big-data)
+
+**Date de soutenance** : Samedi 13 décembre 2025
 
 ---
 
 ## Remerciements
 
-- **Mously DIAW** pour l'encadrement du projet
-- **Open Power System Data** pour les données énergétiques
-- **Open-Meteo** pour l'API météorologique gratuite
+- **Mously DIAW** pour l'encadrement du projet et son expertise
+- **Open Power System Data** pour les données énergétiques ouvertes
+- **Open-Meteo** pour l'API météorologique gratuite et fiable
 - **Apache Spark community** pour l'excellente documentation
-- **Tech et Cie** pour l'infrastructure et les ressources
+- **Tech et Cie** pour l'infrastructure et les ressources mises à disposition
 
 ---
 
 ## Statistiques du projet
 
 ![Lines of Code](https://img.shields.io/badge/Lines%20of%20Code-3000+-blue)
-![Notebook Cells](https://img.shields.io/badge/Notebook%20Cells-100+-orange)
+![Notebook Cells](https://img.shields.io/badge/Notebook%20Cells-67-orange)
 ![Data Processed](https://img.shields.io/badge/Data%20Processed-500MB+-green)
 ![Execution Time](https://img.shields.io/badge/Execution%20Time-~15min-yellow)
 
 ---
 
-**Dernière mise à jour** : Décembre 2024  
+**Dernière mise à jour** : 11 décembre 2024  
 **Version** : 1.0.0  
-**Statut** : Projet finalisé
+**Statut** : Projet finalisé - Prêt pour soutenance
 
 ---
 
@@ -654,6 +665,6 @@ Ce projet est réalisé dans un cadre académique pour le cours Big Data & Cloud
 
 **Si ce projet vous a été utile, n'hésitez pas à lui donner une étoile**
 
-Made with dedication by [Votre équipe]
+Made with dedication by Groupe 2 - BDCC 2025
 
 </div>
