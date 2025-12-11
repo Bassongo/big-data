@@ -415,7 +415,7 @@ Froid (<0°C) :     59,987 MW (+8.4%)
 
 **Membres de l'équipe** :
 - **Mouhammadou DIA** - Analyste Statisticien
-- **Emmanuel DOSSEKOU** - Analyste Statisticien
+- **Kouami Emmanuel DOSSEKOU** - Analyste Statisticien
 - **Marc MARE** - Analyste Statisticien
 - **Ndeye Salla TOURE** - Analyste Statisticien
 
