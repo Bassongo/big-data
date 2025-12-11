@@ -63,7 +63,6 @@ Apprendre à utiliser Apache Spark pour le traitement de grandes quantités de d
 4. **Visualisation et interprétation**
    - Créer des visualisations professionnelles
    - Interpréter les résultats pour des décideurs
-   - Formuler des recommandations actionnables
 
 ---
 
@@ -288,7 +287,7 @@ jupyter notebook notebooks/projet_big_data.ipynb
 
 #### Analyse multi-pays (moyenne européenne)
 
-Cette analyse porte sur 31 pays européens du dataset.
+Cette analyse porte sur 32 pays européens du dataset.
 
 **Consommation moyenne par période**
 ```
@@ -315,7 +314,7 @@ Test ANOVA global
 *Note : *** signifie p < 0.001 (différence très significative)*
 
 **Interprétation** : 
-- En moyenne sur les 31 pays européens analysés, les canicules entraînent une hausse de 16.8% de la consommation électrique (climatisation, refroidissement)
+- En moyenne sur les 32 pays européens analysés, les canicules entraînent une hausse de 16.8% de la consommation électrique (climatisation, refroidissement)
 - Le grand froid entraîne paradoxalement une baisse de 12.3% de la consommation moyenne
 - La différence entre canicule et froid est de 24.9%, hautement significative
 - Ces tendances moyennes masquent d'importantes variations géographiques, comme le montre l'analyse de l'Allemagne ci-dessous
@@ -359,7 +358,7 @@ Froid (<0°C) :     59,987 MW (+8.4%)
 **Volume de données**
 - Observations totales : 590,352 (après fusion)
 - Période : Janvier 2015 - Juin 2020 (5.5 ans)
-- Pays analysés : 31 pays européens
+- Pays analysés : 32 pays européens
 - Liste des pays : AT, BE, BG, CH, CY, CZ, DE, DK, EE, ES, FI, FR, GB, HR, HU, IE, IT, LT, LU, LV, ME, NL, NO, PL, PT, RO, RS, SE, SI, SK, UA
 - Granularité : Données journalières
 
@@ -522,15 +521,6 @@ Froid (<0°C) :     59,987 MW (+8.4%)
 - [x] Code source (notebook)
 - [x] Support de présentation (15-25 minutes)
 - [x] Documentation technique
-- [x] Visualisations professionnelles (PNG haute résolution)
-
-### Livrables complémentaires
-
-- [x] Rapport d'analyse statistique
-- [x] Interprétations métier
-- [x] Recommandations actionnables
-
----
 
 ## Perspectives et améliorations
 
