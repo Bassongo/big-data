@@ -5,8 +5,11 @@
 [![License](https://img.shields.io/badge/License-Academic-green.svg)]()
 
 **Projet BDCC 2025 - Groupe 2** - Analyse des données météorologiques avec Apache Spark pour comprendre leur impact sur l'économie énergétique européenne.
+[![Présentation](badge-canvas)]([lien-canvas](https://www.canva.com/design/DAG6qJ1HTWg/vQne8QjwFq2zv8cIq592Cg/edit?utm_content=DAG6qJ1HTWg&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton))
 
+**[Voir la présentation Canvas](lien-canvas)**
 ---
+
 
 ## Table des matières
 
