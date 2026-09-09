@@ -60,16 +60,18 @@ Data Sources (OPSD + Open-Meteo API)
 ```bash
 git clone https://github.com/Bassongo/spark-energy-weather-analysis.git
 cd spark-energy-weather-analysis
-pip install pyspark==3.5.1 pandas numpy scipy matplotlib seaborn openpyxl
-jupyter notebook energy_weather_analysis.ipynb
+pip install -r requirements.txt
+jupyter notebook notebooks/energy_weather_analysis.ipynb
 ```
 
 ## Project Structure
 
 ```
-├── README.md
-├── energy_weather_analysis.ipynb   # Main analysis notebook
-└── requirements.txt
+├── notebooks/
+│   └── energy_weather_analysis.ipynb   # Main analysis notebook
+├── requirements.txt
+├── LICENSE
+└── README.md
 ```
 
 ## Limitations & Future Work
@@ -93,3 +95,7 @@ Academic project — Big Data & Cloud Computing (BDCC 2025)
 
 **Marc Mare** — [GitHub](https://github.com/Bassongo)
 ENSAE Dakar | MSc SEP, University of Reims (2026)
+
+## License
+
+MIT License, see [LICENSE](LICENSE) for details.
